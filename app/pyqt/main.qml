@@ -5,15 +5,17 @@ ApplicationWindow {
     width: 600
     height: 500
     title: "HelloApp"
-        Image {
-            sourceSize.width: 344
-            sourceSize.height: 344
-            source: "/Users/brentice/Desktop/app/pyqt/rocket-1.png"
-            fillMode: Image.PreserveAspectCrop
-        }
     Text {
         anchors.centerIn: parent
         text: "PyJet"
         font.pixelSize: 24
+    }
+
+    Button{
+        y:70
+        text : "Add Mode"
+        onClicked: {
+            print("Hello")
+        }
     }
 }
