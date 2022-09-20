@@ -20,20 +20,22 @@ class Window(QWidget):
         self.setWindowTitle("PyCruise")
         self.resize(300, 300)
         # Create a QVBoxLayout instance
-        layout = QVBoxLayout()
+        self.layout = QVBoxLayout()
         # Add widgets to the layout
         button = QPushButton("Create new Mode")
         button.clicked.connect(self.add_mode)
-        layout.addWidget(button)
+        self.layout.addWidget(button)
+        
 
-        layout.addStretch()
+        self.layout.addStretch()
         # Set the layout on the application's window
-        self.setLayout(layout)
+        self.setLayout(self.layout)
         # self.setCentralWidget(QWidget)
 
     def add_mode(self):
         mode_form = QFormLayout()
         mode_form.addRow("Mode Name:", QLineEdit())
+        self.layout.addLayout(mode_form)
         
 
 if __name__ == "__main__":
