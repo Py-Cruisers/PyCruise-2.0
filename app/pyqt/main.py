@@ -34,8 +34,15 @@ class Window(QWidget):
 
     def add_mode(self):
         mode_form = QFormLayout()
-        mode_form.addRow("Mode Name:", QLineEdit())
+        text = QLineEdit()
+        mode_form.addRow("Mode Name:", text)
+        text.returnPressed.connect(lambda: print_msg())
+        # print(content)
         self.layout.addLayout(mode_form)
+
+        def print_msg():
+            value = text.text()
+            open(f"txt_files/{value}.txt", "a")
         
 
 if __name__ == "__main__":
