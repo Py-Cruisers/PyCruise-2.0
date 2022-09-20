@@ -1,6 +1,9 @@
 import sys
+import os
 
 from PyQt6.QtCore import Qt
+import fnmatch
+from pathlib import Path
 
 from PyQt6.QtWidgets import (
     QApplication,
@@ -8,9 +11,11 @@ from PyQt6.QtWidgets import (
     QWidget,
     QPushButton,
     QDialogButtonBox,
+    QTabWidget,
     QFormLayout,
     QLineEdit,
     QVBoxLayout,
+    QCheckBox,
 )
 
 class Window(QWidget):
@@ -26,6 +31,15 @@ class Window(QWidget):
         button.clicked.connect(self.add_mode)
         self.layout.addWidget(button)
         
+        tabs = QTabWidget()
+
+        DIR = 'txt_files/'
+        current_collection = None
+        file_list = fnmatch.filter(os.listdir(DIR), '*txt')
+        file_len = (len(fnmatch.filter(os.listdir(DIR), '*txt')))
+        for i in range(len(file_list)):
+            tabs.addTab(self.mode_tab(), f"{Path(file_list[i])}")
+        self.layout.addWidget(tabs)
 
         self.layout.addStretch()
         # Set the layout on the application's window
@@ -43,6 +57,12 @@ class Window(QWidget):
         def print_msg():
             value = text.text()
             open(f"txt_files/{value}.txt", "a")
+    
+    def mode_tab(self):
+        modeTab = QWidget()
+        layout = QVBoxLayout()
+        modeTab.setLayout(layout)
+        return modeTab
         
 
 if __name__ == "__main__":
