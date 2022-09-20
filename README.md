@@ -27,4 +27,10 @@ Jamall Malik
 
 ## Graphs/Charts Below
 
+### Flowchart  
+
 ![Flowchart](project-prep/flowchart.png)
+
+### Domain Model
+
+![Domain Model](project-prep/domain.png)
