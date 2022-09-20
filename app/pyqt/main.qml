@@ -5,6 +5,7 @@ ApplicationWindow {
     width: 300
     height: 200
     title: "HelloApp"
+
         Image {
             sourceSize.width: 100
             sourceSize.height: 100
@@ -18,5 +19,13 @@ ApplicationWindow {
         text: qsTr("heading text")
         font.pixelSize: 36
         font.bold: true
+    }
+
+    Button{
+        y:70
+        text : "Add Mode"
+        onClicked: {
+            print("Hello")
+        }
     }
 }
