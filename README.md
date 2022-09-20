@@ -26,3 +26,5 @@ Jamall Malik
 4. [Software Requirements](project-preps/requirements.md)  
 
 ## Graphs/Charts Below
+
+![Flowchart](project-prep/flowchart.png)
