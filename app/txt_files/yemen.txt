@@ -1,4 +1,1 @@
 slack
-messages
-docker
-dictionary

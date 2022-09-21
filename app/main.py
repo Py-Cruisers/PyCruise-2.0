@@ -118,8 +118,9 @@ class Window(QWidget):
             text_from_file = f.readlines()
             if len(text_from_file) == 0:
                 print("You currently have no websites or applications")
-        #     for file in text_from_file:
-        #         print(file)
+            for file in text_from_file:
+                layout.addWidget(QCheckBox(file))
+                print(file)
 
         # launch button initial
         launch_button = QPushButton("Launch")
