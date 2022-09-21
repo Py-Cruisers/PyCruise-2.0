@@ -40,7 +40,7 @@ class Window(widgets.QWidget):
         label_1.setText("selectNode")
 
         for i in reversed(range(layout.count())): 
-          layout.itemAt(i).widget().setParent(None
+          layout.itemAt(i).widget().setParent(None)
 
     def view_it():
         label_1.setText(f'You clicked button, {f_name.text()}!')
