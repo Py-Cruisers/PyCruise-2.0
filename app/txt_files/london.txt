@@ -2,3 +2,4 @@ notes
 slack
 messages
 docker
+dictionary
