@@ -71,8 +71,6 @@ def test_hello(qtbot):
   Note: Over the course of this project we used only PyQt5 and PyQt6. We did not use PySide.
   ```
 
-
-
 ### References
 
 - [PyTest Qt Tutorial](https://pytest-qt.readthedocs.io/en/latest/tutorial.html)
