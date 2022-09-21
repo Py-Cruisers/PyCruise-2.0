@@ -105,6 +105,14 @@ class Window(QWidget):
         edit_button.clicked.connect(self.add_app)
         layout.addWidget(edit_button)
 
+        # show functionality
+        # with open(f"txt_files/{current_collection}.txt", "r") as f:
+        #     text_from_file = f.readlines()
+        #     if len(text_from_file) == 0:
+        #         print("You currently have no websites or applications")
+        #     for file in text_from_file:
+        #         print(file)
+
         # launch button initial
         launch_button = QPushButton("Launch")
         layout.addWidget(launch_button)
