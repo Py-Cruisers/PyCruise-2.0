@@ -93,6 +93,7 @@ class Window(QWidget):
     
     # Tabs for each mode
     # TO DO: 'show' functionality
+    # Format Error: clicking edit +1 times will pop up multiple "add apps"
     def mode_tab(self):
         # Class initials
         modeTab = QWidget()
@@ -100,11 +101,10 @@ class Window(QWidget):
         app_form = QFormLayout()
         text = QLineEdit()
 
-        # TO DO: condition to only display with edit(); edit button go here instead of add_app 
-        app_form.addRow("Add App:", text)
-        layout.addLayout(app_form)
-        text.returnPressed.connect(lambda: self.add_app(text))
-        
+        edit_button = QPushButton("Edit")
+        edit_button.clicked.connect(self.add_app)
+        layout.addWidget(edit_button)
+
         # launch button initial
         launch_button = QPushButton("Launch")
         layout.addWidget(launch_button)
@@ -113,15 +113,20 @@ class Window(QWidget):
         modeTab.setLayout(layout)
         return modeTab
 
-    # wrap add_app and delete_app in def edit() so when they click edit, those two functions pop up
-    # TO DO: condition
-    # function for adding application to txt files
-    def add_app(self, text):
-        value = text.text()
-        index = self.tabs.currentIndex()
-        current_collection = self.tabs.tabText(index)
-        with open(f"txt_files/{current_collection}.txt", "a") as f:
-            f.write(f"{value}\n")
+    def add_app(self):
+        mode_form = QFormLayout()
+        text = QLineEdit()
+        mode_form.addRow("App Name:", text)
+        text.returnPressed.connect(lambda: create_app())
+        self.layout.addLayout(mode_form)
+        
+        def create_app():
+            value = text.text()
+            index = self.tabs.currentIndex()
+            current_collection = self.tabs.tabText(index)
+            with open(f"txt_files/{current_collection}.txt", "a") as f:
+                f.write(f"{value}\n")
+
     
     # TO DO: 'delete' functionality
 
