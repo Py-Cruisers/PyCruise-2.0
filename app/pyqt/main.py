@@ -1,9 +1,11 @@
 import sys
 import os
+import webbrowser
 
 from PyQt6.QtCore import Qt
 import fnmatch
 from pathlib import Path
+import platform
 
 from PyQt6.QtWidgets import (
     QApplication,
@@ -72,8 +74,9 @@ class Window(QWidget):
         layout.addLayout(app_form)
         text.returnPressed.connect(lambda: self.add_app(text))
         
-        
-        layout.addWidget(QPushButton("Launch"))
+        launch_button = QPushButton("Launch")
+        layout.addWidget(launch_button)
+        launch_button.clicked.connect(self.launch_mode)
         modeTab.setLayout(layout)
         return modeTab
 
@@ -83,6 +86,23 @@ class Window(QWidget):
         current_collection = self.tabs.tabText(index)
         with open(f"txt_files/{current_collection}.txt", "a") as f:
             f.write(f"{value}\n")
+    
+    def launch_mode(self):
+        index = self.tabs.currentIndex()
+        current_collection = self.tabs.tabText(index)
+        with open(f"txt_files/{current_collection}.txt", "r") as f:
+            text_from_file = f.readlines()
+            for app in text_from_file:
+                if "http" in app or "www" in app:
+                    webbrowser.open(app.strip())
+                else:
+                    app_to_use = app.strip('\n').lower()
+
+                    if platform.system() == 'Linux':
+                        os.system(f"/snap/bin/{app_to_use}")
+
+                    if platform.system() == 'Darwin':
+                        os.system(f"""osascript -e 'tell application "{app_to_use}" to activate'""")
 
         
           
