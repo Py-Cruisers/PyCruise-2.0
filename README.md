@@ -37,7 +37,7 @@ Jamall Malik
 
 ## Testing
 
-### Researching Possible Testing Methods
+### Pytest-qt Research Notes
 
 - Pytest-qt plugin
   - allows programmers to write tests for PyQt5 and PyQt6, among others
@@ -56,6 +56,22 @@ def test_hello(qtbot):
 
     assert widget.greet_label.text() == "Hello!"
 ```
+
+- Requirements
+
+  - Minimum Python3.7
+    - works with PySide6, PySide2, <em>PyQt6</em>, <em>PyQt5</em>
+    - gives preference to first one installed in this order:
+      - PySide6
+      - PySide 2
+      - PyQt6
+      - PyQt5
+
+  ```md
+  Note: Over the course of this project we used only PyQt5 and PyQt6. We did not use PySide.
+  ```
+
+
 
 ### References
 
