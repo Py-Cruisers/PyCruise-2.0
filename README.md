@@ -75,5 +75,7 @@ def test_hello(qtbot):
 
 - [PyTest Qt Tutorial](https://pytest-qt.readthedocs.io/en/latest/tutorial.html)
 
+- [Test Tutorial Example Code](https://github.com/nicoddemus/PySide-Examples/blob/master/examples/dialogs/findfiles.py)
+
 - [PyQt Testing StackOverflow](https://stackoverflow.com/questions/15044447/how-do-i-unit-testing-my-gui-program-with-python-and-pyqt)
 
