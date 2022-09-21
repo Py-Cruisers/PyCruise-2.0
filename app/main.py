@@ -41,6 +41,7 @@ class Window(QWidget):
         self.tabs = QTabWidget()
         # Tabs function call to display on window
         self.add_tabs()
+        # self.show_app()
 
         # Makes window styling dynamic
         self.layout.addStretch()
@@ -106,10 +107,17 @@ class Window(QWidget):
         layout.addWidget(edit_button)
 
         # show functionality
-        # with open(f"txt_files/{current_collection}.txt", "r") as f:
-        #     text_from_file = f.readlines()
-        #     if len(text_from_file) == 0:
-        #         print("You currently have no websites or applications")
+        DIR = 'txt_files/'
+        file_list = fnmatch.filter(os.listdir(DIR), '*txt')
+        for i in range(len(file_list)):
+            text_file = str(Path(file_list[i]))
+            # mode_text = text.rstrip(".txt")
+            
+
+        with open(f"txt_files/{text_file}", "r") as f:
+            text_from_file = f.readlines()
+            if len(text_from_file) == 0:
+                print("You currently have no websites or applications")
         #     for file in text_from_file:
         #         print(file)
 
@@ -124,7 +132,7 @@ class Window(QWidget):
     def add_app(self):
         mode_form = QFormLayout()
         text = QLineEdit()
-        mode_form.addRow("App Name:", text)
+        mode_form.addRow("Add Application or Website:", text)
         text.returnPressed.connect(lambda: create_app())
         self.layout.addLayout(mode_form)
         
@@ -135,6 +143,14 @@ class Window(QWidget):
             with open(f"txt_files/{current_collection}.txt", "a") as f:
                 f.write(f"{value}\n")
 
+    # def show_app(self):
+    #     index = self.tabs.currentIndex()
+    #     current_collection = self.tabs.tabText(index)
+    #     print(current_collection, "Current Mode check")
+    #     with open(f"txt_files/{current_collection}.txt", "r") as f:
+    #         text_from_file = f.readlines()
+    #         if len(text_from_file) == 0:
+    #             print("You currently have no websites or applications")
     
     # TO DO: 'delete' functionality
 
