@@ -35,7 +35,29 @@ Jamall Malik
 
 ![Domain Model](project-prep/domain.png)
 
-## References
+## Testing
+
+### Researching Possible Testing Methods
+
+- Pytest-qt plugin
+  - allows programmers to write tests for PyQt5 and PyQt6, among others
+  - main use is `qtbot` fixture (see below)
+    - handles `qApp` creation
+    - provides methods to simulate user interaction with Qt widgets
+      - eg. key presses and mouse clicks
+
+```Python
+def test_hello(qtbot):
+    widget = HelloWidget()
+    qtbot.addWidget(widget)
+
+    # click in the Greet button and make sure it updates the appropriate label
+    qtbot.mouseClick(widget.button_greet, QtCore.Qt.LeftButton)
+
+    assert widget.greet_label.text() == "Hello!"
+```
+
+### References
 
 - [PyTest Qt Tutorial](https://pytest-qt.readthedocs.io/en/latest/tutorial.html)
 
