@@ -19,7 +19,7 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
     QCheckBox,
 )
-
+print("testing testing 123")
 class Window(QWidget):
 
     def __init__(self):
