@@ -104,7 +104,7 @@ class Tab(QTabWidget):
         super().__init__()
         self.test_tab = QWidget()
         self.layout = QVBoxLayout()
-        self.addTab(self.test_tab, "PyCrusie")
+        self.addTab(self.test_tab, "🌟")
         # self.add_tabs()
         self.mode_text = mode_text
         self.show_apps()
