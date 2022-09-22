@@ -2,15 +2,26 @@ import pytest
 # import PyQt6
 import app.main
 from pytestqt import qtbot
+
 def test_123():
     assert "testing testing 123"
 
 # @pytest.mark.skip
-def test_window_title(qtbot):
+def test_create_mode_button(qtbot, event: QMouseEvent) _> None:
+    event.accept()
+    if event.button() == Qt.LeftButton:
+        
     window = app.main.Window()
     window.show()
-    
-    assert window.windowTitle == "PyCruise"
+    qtbot.addWidget(window)
+
+    # text = QLineEdit()
+    # mode_form.addRow("Mode Name:", text)
+
+    qtbot.mouseClick(window.findButton, QtCore.Qt.LeftButton)
+
+
+
 
 
 @pytest.mark.skip
