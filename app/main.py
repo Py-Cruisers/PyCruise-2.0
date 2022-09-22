@@ -104,6 +104,7 @@ class Window(QWidget):
 
         edit_button = QPushButton("Edit")
         edit_button.clicked.connect(self.add_app)
+        edit_button.clicked.connect(self.delete_app)
         layout.addWidget(edit_button)
 
         # show functionality
@@ -159,6 +160,27 @@ class Window(QWidget):
             current_collection = self.tabs.tabText(index)
             with open(f"txt_files/{current_collection}.txt", "a") as f:
                 f.write(f"{value}\n")
+
+    def delete_app(self):
+        mode_form = QFormLayout()
+        text = QLineEdit()
+        mode_form.addRow("Delete Application or Website:", text)
+        text.returnPressed.connect(lambda: remove_app())
+        self.layout.addLayout(mode_form)
+
+        def remove_app():
+            value = text.text()
+            index = self.tabs.currentIndex()
+            current_collection = self.tabs.tabText(index)
+            print(current_collection, "current collection from delete app")
+            with open(f"txt_files/{current_collection}.txt", "r") as fr:
+                lines = fr.readlines()
+                print(lines, "content for txt file from delete app")
+                with open(f"txt_files/{current_collection}.txt", "w") as fw:
+                    for line in lines:
+                        if line.strip('\n').lower() != f"{value.lower()}":
+                            fw.write(line)
+
 
     # def show_app(self):
     #     index = self.tabs.currentIndex()
