@@ -2,12 +2,15 @@ import sys
 import os
 import webbrowser
 
+from PyQt6 import QtCore
 from PyQt6.QtCore import Qt
+
 import fnmatch
 from pathlib import Path
 import platform
 
 from PyQt6.QtGui import QIcon, QPixmap
+
 
 from PyQt6.QtWidgets import (
     QApplication,
@@ -49,6 +52,7 @@ class Window(QWidget):
         self.layout.addWidget(button)
         
         
+        
 
         # Tabs Initialization
         self.tabs = QTabWidget()
@@ -72,7 +76,7 @@ class Window(QWidget):
         def create_mode():
             value = text.text()
             open(f"txt_files/{value}.txt", "a")
-            self.tabs.addTab(Tab(value), f"{value}")
+            self.tabs.addTab(Tab(value, self.layout), f"{value}")
 
     def add_tabs(self):
         DIR = 'txt_files/'
@@ -81,37 +85,47 @@ class Window(QWidget):
         for i in range(len(file_list)):
             text = str(Path(file_list[i]))
             mode_text = text.rstrip(".txt")
-            self.tabs.addTab(Tab(mode_text), f"{mode_text}")
+            self.tabs.addTab(Tab(mode_text, self.layout), f"{mode_text}")
         self.layout.addWidget(self.tabs)
 
 class Tab(QTabWidget):
-    def __init__(self, mode_text):
+    def __init__(self, mode_text, window_layout):
         super().__init__()
         self.test_tab = QWidget()
         self.layout = QVBoxLayout()
-        self.addTab(self.test_tab, "")
+        self.addTab(self.test_tab, "PyCruise")
         # self.add_tabs()
         self.mode_text = mode_text
-        self.show_apps()
+        self.window_layout = window_layout
         launch_button = QPushButton("Launch")
+        launch_button.move(10,10)
+        self.layout.addWidget(launch_button)
+        
+        
 
         edit_button = QPushButton("Edit")
-        edit_button.clicked.connect(lambda: self.add_app(self.layout))
-        edit_button.clicked.connect(lambda: self.delete_app(self.layout))
+        edit_button.clicked.connect(lambda: self.add_app(window_layout, self.layout))
+        edit_button.clicked.connect(lambda: self.delete_app(window_layout))
         self.layout.addWidget(edit_button)
 
-        self.layout.addWidget(launch_button)
+        
+
+        self.show_apps()
         launch_button.clicked.connect(self.launch_mode)
+        self.test_tab.setGeometry(50,50,320,200)
     
         self.test_tab.setLayout(self.layout)
+    
+    def hi(self):
+        print("Hi")
 
-    def add_app(self, layout):
+    def add_app(self, window_layout, layout):
         mode_form = QFormLayout()
         text = QLineEdit()
         mode_form.addRow("Add Application or Website:", text)
         text.returnPressed.connect(lambda: create_app(layout))
         text.returnPressed.connect(text.clear)
-        layout.addLayout(mode_form)
+        window_layout.addLayout(mode_form)
         
         def create_app(layout):
     
@@ -121,13 +135,13 @@ class Tab(QTabWidget):
                 f.write(f"{text.text()}\n")
 
     
-    def delete_app(self, layout):
+    def delete_app(self, window_layout):
         mode_form = QFormLayout()
         text = QLineEdit()
         mode_form.addRow("Delete Application or Website:", text)
         text.returnPressed.connect(lambda: remove_app())
         text.returnPressed.connect(text.clear)
-        layout.addLayout(mode_form)
+        window_layout.addLayout(mode_form)
 
         def remove_app():
             value = text.text()
