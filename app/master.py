@@ -72,7 +72,8 @@ class Window(QWidget):
         app_form = QFormLayout()
         text = QLineEdit()
 
-        # TO DO: condition to only display with edit(); edit button go here instead of add_app 
+        # TO DO: condition to only display with edit(); edit button go here instead of add_app
+         
         app_form.addRow("Add App:", text)
         layout.addLayout(app_form)
         text.returnPressed.connect(lambda: self.add_app(text))
