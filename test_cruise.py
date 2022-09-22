@@ -1,13 +1,13 @@
 import pytest
-import PyQt6
-from app import main
-
+# import PyQt6
+import app.main
+import 
 def test_123():
     assert "testing testing 123"
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_window_title(qtbot):
-    window = main.Window()
+    window = app.main.Window()
     window.show()
     
     assert window.windowTitle == "PyCruise"
