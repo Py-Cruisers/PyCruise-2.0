@@ -23,23 +23,31 @@ from PyQt6.QtWidgets import (
     QMainWindow,
     QStackedLayout,
     QStatusBar,
-    QToolBar
+    QToolBar,
+    QHBoxLayout
 )
+
 
 class Window(QWidget):
 
+
+        
     def __init__(self):
         super(Window, self).__init__()
 
         # Initial application window setup
         self.setWindowTitle("PyCruise")
         self.resize(400, 350)
+        
+        self.setStyleSheet("background-color: #b0c4b1;"
+                           "color: #000000;")
     
         
         # Create a QVBoxLayout instance
         self.layout = QVBoxLayout()
 
-        pixmap = QPixmap("rocket.png")
+        pixmap = QPixmap("pycruise.png")
+        self.setGeometry(15, 15, 10, 10)
         self.label = QLabel()
         self.label.setPixmap(pixmap)
         self.layout.addWidget(self.label)
@@ -50,7 +58,8 @@ class Window(QWidget):
         button = QPushButton("Create new Mode")
 
         button.setStyleSheet(
-            "background-color: #999aca; "
+            "background-color: #dedbd2; "
+            "color: #000000;"
             "font-family: sans-serif; "
             "font-size: 15px;")
 
@@ -102,7 +111,8 @@ class Tab(QTabWidget):
         launch_button = QPushButton("Launch")
 
         launch_button.setStyleSheet(
-            "background-color: #999aca; "
+            "background-color: #dedbd2;"
+            "color: #000000;"
             "font-family: times; "
             "font-size: 15px;")
 
@@ -117,7 +127,8 @@ class Tab(QTabWidget):
         self.test_tab.setLayout(self.layout)
 
         edit_button.setStyleSheet(
-            "background-color: #999aca; "
+            "background-color: #dedbd2; "
+            "color: #000000;"
             "font-family: times; "
             "font-size: 15px;")
 

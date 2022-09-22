@@ -1,65 +1,65 @@
+#!/usr/bin/python
+
+"""
+ZetCode PyQt6 tutorial
+
+This example shows
+how to use QSplitter widget.
+
+Author: Jan Bodnar
+Website: zetcode.com
+"""
+
 import sys
-import os
-import webbrowser
 
 from PyQt6.QtCore import Qt
-import fnmatch
-from pathlib import Path
-from PyQt6.QtGui import QIcon, QFont, QPixmap, QMovie, QRegion, QPalette, QColor
-import platform
-
-from PyQt6.QtWidgets import (
-    QApplication,
-    QDialog,
-    QWidget,
-    QPushButton,
-    QDialogButtonBox,
-    QTabWidget,
-    QFormLayout,
-    QLineEdit,
-    QVBoxLayout,
-    QCheckBox,
-    QLabel,
-    QMainWindow,
-    QStackedLayout
-)
+from PyQt6.QtWidgets import (QWidget, QHBoxLayout, QFrame,
+        QSplitter, QApplication)
 
 
-class Color(QWidget):
-
-    def __init__(self, color):
-        super(Color, self).__init__()
-        self.setAutoFillBackground(True)
-
-        palette = self.palette()
-        palette.setColor(QPalette.ColorRole.Window, QColor(color))
-        self.setPalette(palette)
-        
-class MainWindow(QMainWindow):
+class Example(QWidget):
 
     def __init__(self):
-        super(MainWindow, self).__init__()
+        super().__init__()
 
-        self.setWindowTitle("My App")
+        self.initUI()
 
-        layout = QStackedLayout()
 
-        layout.addWidget(Color('#191D32'))
-        layout.addWidget(Color('#453A49'))
-        layout.addWidget(Color('#6D3B47'))
-        layout.addWidget(Color('#BA2C73'))
-        
-        layout.setCurrentIndex(3)
-        
-        
+    def initUI(self):
 
-        widget = QWidget()
-        widget.setLayout(layout)
-        self.setCentralWidget(widget)
+        hbox = QHBoxLayout(self)
 
-app = QApplication(sys.argv)
+        topleft = QFrame(self)
+        topleft.setFrameShape(QFrame.Shape.StyledPanel)
 
-window = MainWindow()
-window.show()
+        topright = QFrame(self)
+        topright.setFrameShape(QFrame.Shape.StyledPanel)
 
-app.exec()
+        bottom = QFrame(self)
+        bottom.setFrameShape(QFrame.Shape.StyledPanel)
+
+        splitter1 = QSplitter(Qt.Orientations.Horizontal)
+        splitter1.addWidget(topleft)
+        splitter1.addWidget(topright)
+
+        splitter2 = QSplitter(Qt.Orientations.Vertical)
+        splitter2.addWidget(splitter1)
+        splitter2.addWidget(bottom)
+
+        hbox.addWidget(splitter2)
+        self.setLayout(hbox)
+
+        self.setGeometry(300, 300, 450, 400)
+        self.setWindowTitle('QSplitter')
+        self.show()
+
+
+def main():
+
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec())
+
+
+if __name__ == '__main__':
+    main()
