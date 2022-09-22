@@ -1,6 +1,8 @@
 import sys
 import os
 import webbrowser
+import shutil
+from xml.dom import NOT_FOUND_ERR
 
 from PyQt6 import QtCore
 from PyQt6.QtCore import Qt
@@ -166,7 +168,8 @@ class Tab(QTabWidget):
                     app_to_use = app.strip('\n').lower()
 
                     if platform.system() == 'Linux':
-                        os.system(f"/snap/bin/{app_to_use}")
+                        req_app = shutil.which(f"{app_to_use}")
+                        os.system(f"{req_app}")
 
                     if platform.system() == 'Darwin':
                         os.system(f"""osascript -e 'tell application "{app_to_use}" to activate'""")
