@@ -1,7 +1,7 @@
 import pytest
 # import PyQt6
 import app.main
-import 
+from pytestqt import qtbot
 def test_123():
     assert "testing testing 123"
 
