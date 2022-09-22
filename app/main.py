@@ -40,20 +40,24 @@ class Window(QWidget):
         # Create a QVBoxLayout instance
         self.layout = QVBoxLayout()
 
-        # pixmap = QPixmap("./bills.png")
-        # self.label = QLabel()
-        # self.label.setPixmap(pixmap)
-        # self.layout.addWidget(self.label)
-        # self.setLayout(self.layout)
-        # self.show()
-
+        pixmap = QPixmap("pycruise.png")
+        self.setGeometry(15, 15, 10, 10)
+        self.label = QLabel()
+        self.label.setPixmap(pixmap)
+        self.layout.addWidget(self.label)
+        self.setLayout(self.layout)
+        self.show()
 
         # 'Create Mode' Button
         button = QPushButton("Create new Mode")
         button.clicked.connect(self.add_mode)
         self.layout.addWidget(button)
         
-        
+        button.setStyleSheet(
+        "background-color: #dedbd2; "
+        "color: #000000;"
+        "font-family: sans-serif; "
+        "font-size: 15px;")
         
 
         # Tabs Initialization
@@ -103,14 +107,22 @@ class Tab(QTabWidget):
         launch_button.move(10,10)
         self.layout.addWidget(launch_button)
         
-        
+        launch_button.setStyleSheet(
+            "background-color: #dedbd2;"
+            "color: #000000;"
+            "font-family: times; "
+            "font-size: 15px;")
 
         edit_button = QPushButton("Edit")
         edit_button.clicked.connect(lambda: self.add_app(window_layout, self.layout))
         edit_button.clicked.connect(lambda: self.delete_app(window_layout))
         self.layout.addWidget(edit_button)
-
         
+        edit_button.setStyleSheet(
+            "background-color: #dedbd2; "
+            "color: #000000;"
+            "font-family: times; "
+            "font-size: 15px;")
 
         self.show_apps()
         launch_button.clicked.connect(self.launch_mode)
