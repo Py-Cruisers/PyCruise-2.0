@@ -42,9 +42,6 @@ class Window(QWidget):
 
         # Tabs function call to display on window
         self.add_tabs()
-
-        # tab = Tab()
-        # self.layout.addWidget(tab)
         
         self.layout.addStretch()
 
@@ -81,7 +78,6 @@ class Tab(QTabWidget):
         # self.add_tabs()
         self.mode_text = mode_text
         self.show_apps()
-        # self.layout.addWidget(QCheckBox(self.mode_text))
         launch_button = QPushButton("Launch")
 
         edit_button = QPushButton("Edit")
@@ -150,18 +146,17 @@ class Tab(QTabWidget):
             text_from_file = f.readlines()
             for app in text_from_file:
                 app_to_use = app.strip('\n').lower()
-                print(app_to_use)
-                self.layout.addWidget(QCheckBox(app))
+                self.layout.addWidget(QCheckBox(app_to_use))
     
-    def add_tabs(self):
-        DIR = 'txt_files/'
-        file_list = fnmatch.filter(os.listdir(DIR), '*txt')
+    # FUTURE FEATURE
+    # def add_tabs(self):
+    #     DIR = 'txt_files/'
+    #     file_list = fnmatch.filter(os.listdir(DIR), '*txt')
         
-        for i in range(len(file_list)):
-            text = str(Path(file_list[i]))
-            mode_text = text.rstrip(".txt")
-            self.addTab(self.test_tab, f"{mode_text}")
-        # self.layout.addWidget(self.tabs)
+    #     for i in range(len(file_list)):
+    #         text = str(Path(file_list[i]))
+    #         mode_text = text.rstrip(".txt")
+    #         self.addTab(self.test_tab, f"{mode_text}")
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
