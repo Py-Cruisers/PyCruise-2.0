@@ -1,16 +1,20 @@
 import pytest
 # import PyQt6
-import app.main
-from pytestqt import qtbot
+import main
+from pytestqt import qtbot 
+from PyQt6 import QtCore
+from PyQt6.QtCore import Qt
+
+
 def test_123():
     assert "testing testing 123"
 
 # @pytest.mark.skip
 def test_window_title(qtbot):
-    window = app.main.Window()
-    window.show()
-    
-    assert window.windowTitle == "PyCruise"
+    window = main.Window()
+    qtbot.mouseClick(window.create_new_mode_button, QtCore.Qt.LeftButton)
+
+    assert window.layout == "PyCruise"
 
 
 @pytest.mark.skip
