@@ -1,6 +1,10 @@
 import sys
 import os
 import webbrowser
+import sys
+# from PyQt6.QtWidgets import QStyleFactory
+# from PyQt6.QtWidgets import QApplication, QPushButton, QVBoxLayout, QWidget
+# # app = QApplication(sys.argv)
 
 from PyQt6.QtCore import Qt
 import fnmatch
@@ -19,6 +23,10 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
     QCheckBox,
 )
+
+# app.setStyle('Fusion')
+# window = QWidget()
+# layout = QVBoxLayout(window)
 
 class Window(QWidget):
 
