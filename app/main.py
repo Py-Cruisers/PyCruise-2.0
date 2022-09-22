@@ -107,27 +107,36 @@ class Window(QWidget):
         layout.addWidget(edit_button)
 
         # show functionality
+
         # DIR = 'txt_files/'
         # file_list = fnmatch.filter(os.listdir(DIR), '*txt')
         # for i in range(len(file_list)):
         #     text_file = str(Path(file_list[i]))
 
-        index = self.tabs.currentIndex()
-        current_collection = self.tabs.tabText(index)
-        print(current_collection, "Txt files test")
-            
-        print(os.getcwd())
-        if current_collection:
-            with open(f"txt_files/{current_collection}.txt", "r") as f:
+        DIR = 'txt_files/'
+        file_list = fnmatch.filter(os.listdir(DIR), '*txt')
+
+        for i in range(len(file_list)):
+            text_file = str(Path(file_list[i]))
+
+            print(text_file, "Current file")
+
+            with open(f"txt_files/{text_file}", "r") as f:
                 text_from_file = f.readlines()
-                print("Break here?")
+                print("moving from directory")
                 if len(text_from_file) == 0:
+                    # layout.addWidget("You currently have no websites or applications.")
                     print("You currently have no websites or applications")
-                print("or am i break here?")
-                for file in text_from_file:
-                    print("break for loop?")
-                    layout.addWidget(QCheckBox(file))
-                    print(file)
+                else:
+                    print(text_from_file)
+                    for content in text_from_file:
+                        
+                        if content in text_file:
+                            print(content)
+                            print("if statement check")
+                            layout.addWidget(QCheckBox(content))
+                        # else:
+                        #     print("Not in here")
 
         # launch button initial
         launch_button = QPushButton("Launch")
