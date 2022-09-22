@@ -75,6 +75,8 @@ def test_hello(qtbot):
 
 - [PyTest Qt Tutorial](https://pytest-qt.readthedocs.io/en/latest/tutorial.html)
 
+- [Using PyTest Temporary Directories](https://pytest.org/en/7.1.x/how-to/tmp_path.html)
+
 - [Test Tutorial Example Code](https://github.com/nicoddemus/PySide-Examples/blob/master/examples/dialogs/findfiles.py)
 
 - [PyQt Testing StackOverflow](https://stackoverflow.com/questions/15044447/how-do-i-unit-testing-my-gui-program-with-python-and-pyqt)
