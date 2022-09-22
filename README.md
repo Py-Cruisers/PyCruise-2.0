@@ -2,15 +2,15 @@
 
 ## Authors
 
-Liesl White  
+- Liesl White  
 
-Dominic Giacona  
+- Dominic Giacona  
 
-Dennis DeVries  
+- Dennis DeVries  
 
-Brentice Loper  
+- Brentice Loper  
 
-Jamall Malik  
+- Jamall Malik  
 
 ## Project Management Tools:
 
@@ -79,3 +79,12 @@ def test_hello(qtbot):
 
 - [PyQt Testing StackOverflow](https://stackoverflow.com/questions/15044447/how-do-i-unit-testing-my-gui-program-with-python-and-pyqt)
 
+- [PyQT Testing IBM](https://www.ibm.com/docs/en/hats/9.6.0?topic=widgets-registering-your-component-widget)
+
+### PyCruise 2.0 install
+
+1. Clone it down to your local machine
+2. create a virtual environment
+3. open up your terminal run "npm install requirements.txt" while your virtual environment is running.
+4. to run the application type "Python main.py" in your terminal.
+5. A widget will pop up and the application will be running ready for use.
