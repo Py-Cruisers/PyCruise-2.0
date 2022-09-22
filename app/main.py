@@ -41,7 +41,7 @@ class Window(QWidget):
         self.tabs = QTabWidget()
         # Tabs function call to display on window
         self.add_tabs()
-
+        
         # Makes window styling dynamic
         self.layout.addStretch()
 
@@ -100,45 +100,38 @@ class Window(QWidget):
         app_form = QFormLayout()
         text = QLineEdit()
 
-        # TO DO: condition to only display with edit(); edit button go here instead of add_app 
-        app_form.addRow("Add App:", text)
-        layout.addLayout(app_form)
         
-        text.returnPressed.connect(lambda: self.add_app(text, layout))
-        # layout.addWidget(QCheckBox(text.text()))
-    
-        # index = self.tabs.currentIndex()
-        # current_collection = self.tabs.tabText(index)
-        # print(current_collection)
-
-        # launch button initial
+        # app_form.addRow("Add App:", text)
+        # layout.addLayout(app_form)
+        # text.returnPressed.connect(lambda: self.add_app(text, layout))
+        edit_button = QPushButton("Edit")
+        edit_button.clicked.connect(lambda: self.add_app(layout))
+        layout.addWidget(edit_button)
+        
         launch_button = QPushButton("Launch")
         layout.addWidget(launch_button)
-        # launch_button.clicked.connect(self.launch_mode)
+        launch_button.clicked.connect(self.launch_mode)
 
-        open_button = QPushButton("open")
-        layout.addWidget(open_button)
-        # open_button.clicked.connect(self.show_app(self.layout))
 
         modeTab.setLayout(layout)
             
         return modeTab
 
+    def add_app(self, layout):
+        mode_form = QFormLayout()
+        text = QLineEdit()
+        mode_form.addRow("Add Application or Website:", text)
+        text.returnPressed.connect(lambda: create_app(layout))
+        layout.addLayout(mode_form)
         
+        def create_app(layout):
+            value = text.text()
+            index = self.tabs.currentIndex()
+            layout.addWidget(QCheckBox(value))
+            current_collection = self.tabs.tabText(index)
+            with open(f"txt_files/{current_collection}.txt", "a") as f:
+                f.write(f"{value}\n")
 
-    
-
-    # wrap add_app and delete_app in def edit() so when they click edit, those two functions pop up
-    # TO DO: condition
-    # function for adding application to txt files
-    def add_app(self, text, layout):
-        value = text.text()
-        index = self.tabs.currentIndex()
-        layout.addWidget(QCheckBox(value))
-        current_collection = self.tabs.tabText(index)
-        with open(f"txt_files/{current_collection}.txt", "a") as f:
-            f.write(f"{value}\n")
-            # current_widget.layout.addWidget(QCheckBox(value))
     
     # TO DO: 'delete' functionality
 
