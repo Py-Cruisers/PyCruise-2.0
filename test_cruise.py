@@ -2,15 +2,13 @@ import pytest
 # import PyQt6
 import app.main
 from pytestqt import qtbot
+from PyQt6.QtCore import Qt
 
 def test_123():
     assert "testing testing 123"
 
 # @pytest.mark.skip
-def test_create_mode_button(qtbot, event: QMouseEvent) _> None:
-    event.accept()
-    if event.button() == Qt.LeftButton:
-        
+def test_create_mode_button(qtbot):
     window = app.main.Window()
     window.show()
     qtbot.addWidget(window)
