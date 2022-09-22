@@ -7,6 +7,8 @@ import fnmatch
 from pathlib import Path
 import platform
 
+from PyQt6.QtGui import QIcon, QPixmap
+
 from PyQt6.QtWidgets import (
     QApplication,
     QDialog,
@@ -18,6 +20,7 @@ from PyQt6.QtWidgets import (
     QLineEdit,
     QVBoxLayout,
     QCheckBox,
+    QLabel,
 )
 
 class Window(QWidget):
@@ -28,6 +31,9 @@ class Window(QWidget):
         self.resize(300, 300)
 
         self.layout = QVBoxLayout()
+
+        
+        
 
         button = QPushButton("Create new Mode")
         button.clicked.connect(self.add_mode)

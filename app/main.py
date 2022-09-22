@@ -7,6 +7,8 @@ import fnmatch
 from pathlib import Path
 import platform
 
+from PyQt6.QtGui import QIcon, QPixmap
+
 from PyQt6.QtWidgets import (
     QApplication,
     QDialog,
@@ -18,6 +20,7 @@ from PyQt6.QtWidgets import (
     QLineEdit,
     QVBoxLayout,
     QCheckBox,
+    QLabel,
 )
 
 class Window(QWidget):
@@ -27,16 +30,26 @@ class Window(QWidget):
 
         # Initial application window setup
         self.setWindowTitle("PyCruise")
-        self.resize(300, 300)
+        self.resize(500, 300)
 
         # Create a QVBoxLayout instance
         self.layout = QVBoxLayout()
+
+        # pixmap = QPixmap("./bills.png")
+        # self.label = QLabel()
+        # self.label.setPixmap(pixmap)
+        # self.layout.addWidget(self.label)
+        # self.setLayout(self.layout)
+        # self.show()
+
 
         # 'Create Mode' Button
         button = QPushButton("Create new Mode")
         button.clicked.connect(self.add_mode)
         self.layout.addWidget(button)
         
+        
+
         # Tabs Initialization
         self.tabs = QTabWidget()
 
@@ -51,7 +64,9 @@ class Window(QWidget):
         mode_form = QFormLayout()
         text = QLineEdit()
         mode_form.addRow("Mode Name:", text)
+        
         text.returnPressed.connect(lambda: create_mode())
+        text.returnPressed.connect(text.clear)
         self.layout.addLayout(mode_form)
 
         def create_mode():
@@ -95,6 +110,7 @@ class Tab(QTabWidget):
         text = QLineEdit()
         mode_form.addRow("Add Application or Website:", text)
         text.returnPressed.connect(lambda: create_app(layout))
+        text.returnPressed.connect(text.clear)
         layout.addLayout(mode_form)
         
         def create_app(layout):
@@ -110,6 +126,7 @@ class Tab(QTabWidget):
         text = QLineEdit()
         mode_form.addRow("Delete Application or Website:", text)
         text.returnPressed.connect(lambda: remove_app())
+        text.returnPressed.connect(text.clear)
         layout.addLayout(mode_form)
 
         def remove_app():
