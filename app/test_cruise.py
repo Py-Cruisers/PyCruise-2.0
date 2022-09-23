@@ -1,3 +1,4 @@
+from termios import TAB3
 import pytest
 # import PyQt6
 import main
@@ -5,26 +6,42 @@ from pytestqt import qtbot
 from PyQt6 import QtCore
 from PyQt6.QtCore import Qt
 
+from PyQt6.QtWidgets import (
+    QApplication,
+    QDialog,
+    QWidget,
+    QPushButton,
+    QDialogButtonBox,
+    QTabWidget,
+    QFormLayout,
+    QLineEdit,
+    QVBoxLayout,
+    QCheckBox,
+)
+
 
 def test_123():
     assert "testing testing 123"
 
+# def test_window_title(qtbot):
+#     window = main.Window()
+#     assert window.windowTitle == "PyCruise"
+
 # @pytest.mark.skip
-def test_window_title(qtbot):
+def test_create_new_mode_button(qtbot):
     window = main.Window()
-    qtbot.mouseClick(window.create_new_mode_button, QtCore.Qt.LeftButton)
+    qtbot.mouseClick(window.create_new_mode_button, QtCore.Qt.MouseButton.LeftButton)
 
-    assert window.layout == "PyCruise"
+    assert window.mode_form.rowCount() == 1
 
-
-@pytest.mark.skip
-def test_hello(qtbot):
-
+# @pytest.mark.skip
+def test_edit_button(qtbot):
     window = main.Window()
-    window.show()
-    qtbot.addWidget(window)
+    tab = main.Tab()
+    qtbot.mouseClick(tab.edit_button, QtCore.Qt.MouseButton.LeftButton)
 
-    # click in the Greet button and make sure it updates the appropriate label
-    qtbot.mouseClick(widget.button_greet, QtCore.Qt.LeftButton)
+    assert window.mode_form.rowCount() == 2
 
-    assert widget.greet_label.text() == "Hello!"
+
+
+
