@@ -71,13 +71,13 @@ class Window(QWidget):
         self.setLayout(self.layout)
 
     def add_mode(self):
-        mode_form = QFormLayout()
+        self.mode_form = QFormLayout()
         text = QLineEdit()
-        mode_form.addRow("Mode Name:", text)
+        self.mode_form.addRow("Mode Name:", text)
         
         text.returnPressed.connect(lambda: create_mode())
         text.returnPressed.connect(text.clear)
-        self.layout.addLayout(mode_form)
+        self.layout.addLayout(self.mode_form)
 
         def create_mode():
             value = text.text()
@@ -113,12 +113,12 @@ class Tab(QTabWidget):
             "font-family: times; "
             "font-size: 15px;")
 
-        edit_button = QPushButton("Edit")
-        edit_button.clicked.connect(lambda: self.add_app(window_layout, self.layout))
-        edit_button.clicked.connect(lambda: self.delete_app(window_layout))
-        self.layout.addWidget(edit_button)
+        self.edit_button = QPushButton("Edit")
+        self.edit_button.clicked.connect(lambda: self.add_app(window_layout, self.layout))
+        self.edit_button.clicked.connect(lambda: self.delete_app(window_layout))
+        self.layout.addWidget(self.edit_button)
         
-        edit_button.setStyleSheet(
+        self.edit_button.setStyleSheet(
             "background-color: #dedbd2; "
             "color: #000000;"
             "font-family: times; "
@@ -134,12 +134,12 @@ class Tab(QTabWidget):
         print("Hi")
 
     def add_app(self, window_layout, layout):
-        mode_form = QFormLayout()
+        self.app_edit_form = QFormLayout()
         text = QLineEdit()
-        mode_form.addRow("Add Application or Website:", text)
+        self.app_edit_form.addRow("Add Application or Website:", text)
         text.returnPressed.connect(lambda: create_app(layout))
         text.returnPressed.connect(text.clear)
-        window_layout.addLayout(mode_form)
+        window_layout.addLayout(self.app_edit_form)
         
         def create_app(layout):
     
