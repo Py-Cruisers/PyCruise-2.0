@@ -37,10 +37,10 @@ def test_create_new_mode_button(qtbot):
 # @pytest.mark.skip
 def test_edit_button(qtbot):
     window = main.Window()
-    tab = main.Tab()
+    tab = main.Tab("dev", window.layout)
     qtbot.mouseClick(tab.edit_button, QtCore.Qt.MouseButton.LeftButton)
 
-    assert window.mode_form.rowCount() == 2
+    assert tab.app_edit_form.rowCount() == 1
 
 
 
