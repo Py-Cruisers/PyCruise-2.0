@@ -27,7 +27,7 @@ from PyQt6.QtWidgets import (
     QCheckBox,
     QLabel,
 )
-print("testing testing 123")
+
 class Window(QWidget):
 
     def __init__(self):

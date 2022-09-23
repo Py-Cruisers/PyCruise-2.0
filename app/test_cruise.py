@@ -20,19 +20,13 @@ from PyQt6.QtWidgets import (
 )
 
 
-def test_123():
-    assert "testing testing 123"
-
-# def test_window_title(qtbot):
-#     window = main.Window()
-#     assert window.windowTitle == "PyCruise"
-
 # @pytest.mark.skip
 def test_create_new_mode_button(qtbot):
     window = main.Window()
     qtbot.mouseClick(window.create_new_mode_button, QtCore.Qt.MouseButton.LeftButton)
 
     assert window.mode_form.rowCount() == 1
+
 
 # @pytest.mark.skip
 def test_edit_button(qtbot):
