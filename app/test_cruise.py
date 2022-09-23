@@ -23,9 +23,9 @@ from PyQt6.QtWidgets import (
 def test_123():
     assert "testing testing 123"
 
-# def test_window_title(qtbot):
-#     window = main.Window()
-#     assert window.windowTitle == "PyCruise"
+def test_window_title(qtbot):
+    window = main.Window()
+    assert window.windowTitle() == "PyCruise"
 
 # @pytest.mark.skip
 def test_create_new_mode_button(qtbot):
