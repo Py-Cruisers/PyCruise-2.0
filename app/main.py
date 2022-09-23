@@ -135,27 +135,27 @@ class Tab(QTabWidget):
 
     def add_app(self, window_layout, layout):
         self.app_edit_form = QFormLayout()
-        text = QLineEdit()
-        self.app_edit_form.addRow("Add Application or Website:", text)
-        text.returnPressed.connect(lambda: create_app(layout))
-        text.returnPressed.connect(text.clear)
+        self.add_app_text = QLineEdit()
+        self.app_edit_form.addRow("Add Application or Website:", self.add_app_text)
+        self.add_app_text.returnPressed.connect(lambda: create_app(layout))
+        self.add_app_text.returnPressed.connect(self.add_app_text.clear)
         window_layout.addLayout(self.app_edit_form)
         
         def create_app(layout):
-    
-            layout.addWidget(QCheckBox(text.text()))
+            self.app_check_box = QCheckBox(self.add_app_text.text())
+            layout.addWidget(self.app_check_box)
             current_collection = self.mode_text
             with open(f"txt_files/{current_collection}.txt", "a") as f:
-                f.write(f"{text.text()}\n")
+                f.write(f"{self.add_app_text.text()}\n")
 
     
     def delete_app(self, window_layout):
-        mode_form = QFormLayout()
+        self.app_delete_form = QFormLayout()
         text = QLineEdit()
-        mode_form.addRow("Delete Application or Website:", text)
+        self.app_delete_form.addRow("Delete Application or Website:", text)
         text.returnPressed.connect(lambda: remove_app())
         text.returnPressed.connect(text.clear)
-        window_layout.addLayout(mode_form)
+        window_layout.addLayout(self.app_delete_form)
 
         def remove_app():
             value = text.text()

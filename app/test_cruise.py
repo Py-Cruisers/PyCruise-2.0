@@ -43,5 +43,27 @@ def test_edit_button(qtbot):
     assert tab.app_edit_form.rowCount() == 1
 
 
+def test_delete_button(qtbot):
+    window = main.Window()
+    tab = main.Tab("dev", window.layout)
+    qtbot.mouseClick(tab.edit_button, QtCore.Qt.MouseButton.LeftButton)
 
+    assert tab.app_delete_form.rowCount() == 1
 
+def test_add_app_app(qtbot):
+    window = main.Window()
+    tab = main.Tab("dev", window.layout)
+    qtbot.mouseClick(tab.edit_button, QtCore.Qt.MouseButton.LeftButton)
+    qtbot.keyClicks(tab.add_app_text, 'code')
+    qtbot.keyPress(tab.add_app_text, QtCore.Qt.Key.Key_Return)
+
+    assert tab.app_check_box.text() == 'code'
+
+def test_add_app_website(qtbot):
+    window = main.Window()
+    tab = main.Tab("dev", window.layout)
+    qtbot.mouseClick(tab.edit_button, QtCore.Qt.MouseButton.LeftButton)
+    qtbot.keyClicks(tab.add_app_text, 'www.google.com')
+    qtbot.keyPress(tab.add_app_text, QtCore.Qt.Key.Key_Return)
+
+    assert tab.app_check_box.text() == 'www.google.com'
