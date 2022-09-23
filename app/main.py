@@ -151,14 +151,14 @@ class Tab(QTabWidget):
     
     def delete_app(self, window_layout):
         self.app_delete_form = QFormLayout()
-        text = QLineEdit()
-        self.app_delete_form.addRow("Delete Application or Website:", text)
-        text.returnPressed.connect(lambda: remove_app())
-        text.returnPressed.connect(text.clear)
+        self.delete_app_text = QLineEdit()
+        self.app_delete_form.addRow("Delete Application or Website:", self.delete_app_text)
+        self.delete_app_text.returnPressed.connect(lambda: remove_app())
+        self.delete_app_text.returnPressed.connect(self.delete_app_text.clear)
         window_layout.addLayout(self.app_delete_form)
 
         def remove_app():
-            value = text.text()
+            value = self.delete_app_text.text()
             current_collection = self.mode_text
             print(current_collection, "current collection from delete app")
             with open(f"txt_files/{current_collection}.txt", "r") as fr:
@@ -170,8 +170,8 @@ class Tab(QTabWidget):
                             fw.write(line)
         
     def launch_mode(self):
-        current_mode = self.mode_text
-        with open(f"txt_files/{current_mode}.txt", "r") as f:
+        self.current_mode = self.mode_text
+        with open(f"txt_files/{self.current_mode}.txt", "r") as f:
             text_from_file = f.readlines()
             for app in text_from_file:
                 if "http" in app or "www" in app:

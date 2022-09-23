@@ -59,6 +59,22 @@ def test_add_app_app(qtbot):
 
     assert tab.app_check_box.text() == 'code'
 
+def test_delete_app(qtbot):
+    window = main.Window()
+    tab = main.Tab("dev", window.layout)
+    qtbot.mouseClick(tab.edit_button, QtCore.Qt.MouseButton.LeftButton)
+    qtbot.keyClicks(tab.delete_app_text, 'code')
+    qtbot.keyPress(tab.delete_app_text, QtCore.Qt.Key.Key_Return)
+    decider = None
+    with open(f"txt_files/dev.txt", "r") as f:
+        text_from_file = f.readlines()
+        for app in text_from_file:
+            if app == 'code':
+                decider = False
+            else:
+                decider = True
+    assert decider == True
+
 def test_add_app_website(qtbot):
     window = main.Window()
     tab = main.Tab("dev", window.layout)
@@ -67,3 +83,19 @@ def test_add_app_website(qtbot):
     qtbot.keyPress(tab.add_app_text, QtCore.Qt.Key.Key_Return)
 
     assert tab.app_check_box.text() == 'www.google.com'
+
+def test_delete_website(qtbot):
+    window = main.Window()
+    tab = main.Tab("dev", window.layout)
+    qtbot.mouseClick(tab.edit_button, QtCore.Qt.MouseButton.LeftButton)
+    qtbot.keyClicks(tab.delete_app_text, 'www.google.com')
+    qtbot.keyPress(tab.delete_app_text, QtCore.Qt.Key.Key_Return)
+    decider = None
+    with open(f"txt_files/dev.txt", "r") as f:
+        text_from_file = f.readlines()
+        for app in text_from_file:
+            if app == 'www.google.com':
+                decider = False
+            else:
+                decider = True
+    assert decider == True
