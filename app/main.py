@@ -53,7 +53,7 @@ class Window(QWidget):
         self.create_new_mode_button.clicked.connect(self.add_mode)
         self.layout.addWidget(self.create_new_mode_button)
         
-        button.setStyleSheet(
+        self.create_new_mode_button.setStyleSheet(
         "background-color: #dedbd2; "
         "color: #000000;"
         "font-family: sans-serif; "
@@ -85,7 +85,7 @@ class Window(QWidget):
             self.tabs.addTab(Tab(value, self.layout), f"{value}")
 
     def add_tabs(self):
-        DIR = 'app/txt_files/'
+        DIR = 'txt_files/'
         file_list = fnmatch.filter(os.listdir(DIR), '*txt')
         
         for i in range(len(file_list)):
@@ -188,7 +188,7 @@ class Tab(QTabWidget):
 
     def show_apps(self):
         current_mode = self.mode_text
-        with open(f"app/txt_files/{current_mode}.txt", "r") as f:
+        with open(f"txt_files/{current_mode}.txt", "r") as f:
             text_from_file = f.readlines()
             for app in text_from_file:
                 app_to_use = app.strip('\n').lower()

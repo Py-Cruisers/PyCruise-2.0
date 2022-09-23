@@ -1,2 +1,3 @@
-spotify
 https://www.google.com/
+code
+gnome-terminal
